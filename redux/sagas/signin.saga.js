@@ -1,6 +1,7 @@
 
 import { takeEvery, put, call } from "redux-saga/effects";
 import actions from "../actions";
+import { NavigationActions } from "../NavigationActionClass";
 
 
 function* signInWatch() {
@@ -27,7 +28,7 @@ export function* doSignIn(action) {
         if (response && response.status === 200) {
             const json = yield call([response, response.json]);
             yield put({ type: actions.ActionTypes.SIGN_IN_SUCCESS, payload: json });
-            
+            yield call(NavigationActions.navigate, 'Home')
         } else {
             yield put({ type: actions.ActionTypes.SIGN_IN_FAILED, payload: result });
         }
