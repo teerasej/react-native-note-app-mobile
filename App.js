@@ -5,18 +5,23 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
 import NewNotePage from './pages/new-note-page/NewNotePage';
+import LoginPage from './pages/login-page/LoginPage';
 
 import { Provider } from 'react-redux'
 import configureStore from "./redux/store";
 
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+
 const store = configureStore();
 
 const AppNavigator = createStackNavigator({
-  Home: {screen: HomePage},
-  CreateNote: {screen: NewNotePage }
-});
+  Home: { screen: HomePage },
+  Login: { screen: LoginPage },
+  CreateNote: { screen: NewNotePage }
+}, {
+    initialRouteName: "Login"
+  });
 
 const AppContainer = createAppContainer(AppNavigator);
 
