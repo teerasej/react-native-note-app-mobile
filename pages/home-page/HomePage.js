@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Container, Header, Title, Content, List, ListItem, Text } from 'native-base';
 
 export class HomePage extends Component {
     static propTypes = {
@@ -10,9 +11,26 @@ export class HomePage extends Component {
 
     render() {
         return (
-            <View>
-                <Text> prop </Text>
-            </View>
+            <Container>
+                <Header>
+                    <Title>Note</Title>
+                </Header>
+            
+                <Content>
+                <List>
+            <ListItem>
+              <Text>Simon Mignolet</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Nathaniel Clyne</Text>
+            </ListItem>
+            <ListItem>
+              <Text>Dejan Lovren</Text>
+            </ListItem>
+          </List>
+                </Content>
+            </Container>
+            
         )
     }
 }
