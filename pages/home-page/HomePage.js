@@ -6,7 +6,11 @@ import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, B
 
 export class HomePage extends Component {
     static propTypes = {
-        
+        notes: PropTypes.array
+    }
+
+    componentWillMount() {
+        this.props.notes = [];
     }
 
     render() {
@@ -14,7 +18,7 @@ export class HomePage extends Component {
             <Container>
                 <Header>
                     <Body>
-                    <Title>Note</Title>
+                        <Title>Note</Title>
                     </Body>
                 </Header>
 
