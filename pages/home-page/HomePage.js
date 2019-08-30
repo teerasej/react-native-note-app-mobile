@@ -20,6 +20,7 @@ export class HomePage extends Component {
               <Icon name='add'/>
             </Button>
           ),
+          headerLeft: null
         };
       };
 
