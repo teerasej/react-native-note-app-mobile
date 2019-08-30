@@ -4,12 +4,6 @@ import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { HomePage } from './pages/home-page/HomePage';
-import { NewNotePage } from './pages/new-note-page/NewNotePage';
-
-import { Provider, connect } from 'react-redux';
-import configureStore from "./redux/store";
-
-const store = configureStore();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,9 +28,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <Provider store={store}>
-        <NewNotePage/>
-      </Provider>
+      <HomePage/>
     );
   }
 }
