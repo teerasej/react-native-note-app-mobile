@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Container, Header, Title, Content, List, ListItem } from 'native-base';
+import { Container, Header, Title, Content, List, ListItem, Text } from 'native-base';
 
 export class HomePage extends Component {
     static propTypes = {
