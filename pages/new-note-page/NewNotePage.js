@@ -17,6 +17,7 @@ export class NewNotePage extends Component {
 
   onFormSave = (values) => {
     console.log(values);
+    this.props.navigation.goBack();
   }
 
 
