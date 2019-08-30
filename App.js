@@ -4,6 +4,16 @@ import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { HomePage } from './pages/home-page/HomePage';
+import { NewNotePage } from './pages/new-note-page/NewNotePage';
+
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+
+const AppNavigator = createStackNavigator({
+  Home: {screen: HomePage},
+  CreateNote: {screen: NewNotePage }
+});
+
+const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,7 +38,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <HomePage/>
+      <AppContainer />
     );
   }
 }
