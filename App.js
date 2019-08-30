@@ -6,7 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { HomePage } from './pages/home-page/HomePage';
 import { NewNotePage } from './pages/new-note-page/NewNotePage';
 
+import { Provider } from 'react-redux'
+import configureStore from "./redux/store";
+
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+
+const store = configureStore();
 
 const AppNavigator = createStackNavigator({
   Home: {screen: HomePage},
@@ -38,7 +43,9 @@ export default class App extends React.Component {
     }
 
     return (
-      <AppContainer />
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
     );
   }
 }
