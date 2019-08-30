@@ -10,10 +10,6 @@ export class LoginForm extends Component {
         var hasError = false;
         if (error !== undefined && touched) {
             hasError = true;
-            Alert.alert(
-                'Opps',
-                error
-            );
         }
         return (
                 <Item error={hasError}>
@@ -59,8 +55,8 @@ const validate = values => {
         password = ''
     }
 
-    if (password === '') {
-        error.password = 'fill something';
+    if (username === '') {
+        error.username = 'fill something';
     }
     if (password === '') {
         error.password = 'fill something';
