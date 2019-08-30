@@ -46,7 +46,7 @@ const validate = values => {
     const error = {};
     error.message = '';
 
-    var newMessage = values.message;
+    let newMessage = values.message;
 
     if (values.message === undefined) {
         newMessage = ''
@@ -59,6 +59,6 @@ const validate = values => {
     return error;
 };
 
-NewNoteForm = reduxForm({ form: 'test', validate })(NewNoteForm)
+NewNoteForm = reduxForm({ form: 'newNote', validate })(NewNoteForm)
 
 export default NewNoteForm
