@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
-import {  Text, Button, Item, Input, Label } from 'native-base';
+import { View, Alert } from 'react-native'
+import { Text, Button, Item, Input, Label } from 'native-base';
 import { Field, reduxForm } from 'redux-form';
 
 export class NewNoteForm extends Component {
 
     renderInput({ input, label, type, meta: { touched, error, warning } }) {
         var hasError = false;
-        if (error !== undefined) {
+        if (error !== undefined && touched) {
             hasError = true;
+            Alert.alert(
+                'Opps',
+                error
+            );
         }
         return (
-            <Item error={hasError}>
-                <Input {...input} />
-                {hasError ? <Text>{error}</Text> : <Text />}
-            </Item>
+                <Item error={hasError}>
+                    <Input {...input} />
+                </Item>
         )
     }
 
@@ -38,6 +41,24 @@ export class NewNoteForm extends Component {
     }
 }
 
-NewNoteForm = reduxForm({ form: 'test' })(NewNoteForm)
+const validate = values => {
+
+    const error = {};
+    error.message = '';
+
+    var newMessage = values.message;
+
+    if (values.message === undefined) {
+        newMessage = ''
+    }
+
+    if (newMessage === '') {
+        error.message = 'fill something';
+    } 
+
+    return error;
+};
+
+NewNoteForm = reduxForm({ form: 'test', validate })(NewNoteForm)
 
 export default NewNoteForm
