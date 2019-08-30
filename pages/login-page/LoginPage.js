@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 import LoginForm from './LoginForm';
 import { Content } from 'native-base';
 import actions from '../../redux/actions';
+import { NavigationActions } from '../../redux/NavigationActionClass';
+
+
 
 export class LoginPage extends Component {
 
@@ -13,6 +16,12 @@ export class LoginPage extends Component {
             headerTitle: <Text>Login</Text>
         };
     };
+
+    constructor(props){
+        super(props);
+
+        NavigationActions.setNavigator(this.props.navigation);
+    }
 
     onSignIn = (values) => {
         console.log(values);
