@@ -7,9 +7,6 @@ export class LoginForm extends Component {
 
     renderInput({ input, label, type, meta: { touched, error, warning } }) {
 
-        console.log('rendering');
-        console.log(input, type);
-
         var hasError = false;
         if (error !== undefined && touched) {
             hasError = true;
