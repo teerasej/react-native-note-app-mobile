@@ -9,9 +9,14 @@ export class HomePage extends Component {
         notes: PropTypes.array
     }
 
-    componentWillMount() {
-        this.props.notes = [];
+    static defaultProps = {
+        notes: [
+            { title: 'a' },
+            { title: 'b' },
+            { title: 'c' }
+        ]
     }
+
 
     render() {
         return (
@@ -24,15 +29,15 @@ export class HomePage extends Component {
 
                 <Content>
                     <List>
-                        <ListItem>
-                            <Text>Simon Mignolet</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text>Nathaniel Clyne</Text>
-                        </ListItem>
-                        <ListItem>
-                            <Text>Dejan Lovren</Text>
-                        </ListItem>
+                        {
+                            this.props.notes.map((item, index) => {
+                                return (
+                                    <ListItem key={index}>
+                                        <Text>{item.title}</Text>
+                                    </ListItem>
+                                )
+                            })
+                        }
                     </List>
                 </Content>
             </Container>
