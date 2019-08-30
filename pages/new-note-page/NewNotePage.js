@@ -29,12 +29,7 @@ export class NewNotePage extends Component {
 
     render() {
         return (
-            <Container>
-                <Header>
-                    <Body>
-                        <Title>New Note</Title>
-                    </Body>
-                </Header>
+           
                 <Content padder>
                     <Item inlineLabel >
                         <Label>Message: </Label>
@@ -44,7 +39,7 @@ export class NewNotePage extends Component {
                         <Text>Save</Text>
                     </Button>
                 </Content>
-            </Container>
+        
         )
     }
 }

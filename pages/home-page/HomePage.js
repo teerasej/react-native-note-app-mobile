@@ -24,13 +24,7 @@ export class HomePage extends Component {
 
     render() {
         return (
-            <Container>
-                <Header>
-                    <Body>
-                        <Title>Note</Title>
-                    </Body>
-                </Header>
-
+           
                 <Content>
                     <List>
                         {
@@ -44,8 +38,7 @@ export class HomePage extends Component {
                         }
                     </List>
                 </Content>
-            </Container>
-
+           
         )
     }
 }
