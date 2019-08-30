@@ -1,3 +1,5 @@
+import actions from "../actions";
+
 const initialState = {
     notes: []
 }
@@ -5,8 +7,8 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
     switch (type) {
 
-    case 'typeName':
-        return { ...state, ...payload }
+    case actions.ActionTypes.SAVE_NEW_NOTE:
+        return { ...state, notes: [ ...state.notes, { title: payload }] }
 
     default:
         return state

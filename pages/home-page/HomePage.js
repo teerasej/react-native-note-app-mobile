@@ -54,7 +54,7 @@ export class HomePage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-
+    notes: state.note.notes
 })
 
 const mapDispatchToProps = {
