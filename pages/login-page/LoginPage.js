@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import LoginForm from './LoginForm';
+import { Content } from 'native-base';
+
 
 export class LoginPage extends Component {
 
@@ -11,11 +14,15 @@ export class LoginPage extends Component {
         };
     };
 
+    onSignIn = (values) => {
+        console.log(values);
+    }
+
     render() {
         return (
-            <View>
-                <Text> prop </Text>
-            </View>
+            <Content padder>
+                <LoginForm onSubmit={this.onSignIn} />
+            </Content>
         )
     }
 }
