@@ -50,4 +50,6 @@ const mapDispatchToProps = {
 
 }
 
+NewNotePage = reduxForm({ form: 'test' })(NewNotePage)
+
 export default connect(mapStateToProps, mapDispatchToProps)(NewNotePage)
