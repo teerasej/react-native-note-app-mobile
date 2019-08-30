@@ -3,45 +3,34 @@ import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input, Label } from 'native-base';
-import { Field,reduxForm } from 'redux-form';
+
+import NewNoteForm from './NewNoteForm';
 
 export class NewNotePage extends Component {
-    static propTypes = {
-       
-    }
+  static propTypes = {
 
-    static navigationOptions = {
-        title: 'New Note'
-    };
+  }
 
-    renderInput({ input, label, type, meta: { touched, error, warning } }){
-        var hasError= false;
-        if(error !== undefined){
-          hasError= true;
-        }
-        return( 
-          <Item error= {hasError}>
-            <Input {...input}/>
-            {hasError ? <Text>{error}</Text> : <Text />}
-          </Item>
-        )
-      }
+  static navigationOptions = {
+    title: 'New Note'
+  };
 
-    render() {
-        return (
-           
-                <Content padder>
-                    <Item inlineLabel >
-                        <Label>Message: </Label>
-                    <Field name="message" component={this.renderInput} />
-                    </Item>
-                    <Button block primary >
-                        <Text>Save</Text>
-                    </Button>
-                </Content>
-        
-        )
-    }
+  onFormSave = (values) => {
+    console.log(values);
+  }
+
+
+  render() {
+
+
+    return (
+
+      <Content padder>
+        <NewNoteForm onSubmit={this.onFormSave}/>
+      </Content>
+
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -52,6 +41,6 @@ const mapDispatchToProps = {
 
 }
 
-NewNotePage = reduxForm({ form: 'test' })(NewNotePage)
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewNotePage)
