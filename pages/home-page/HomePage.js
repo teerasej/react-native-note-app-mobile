@@ -13,8 +13,11 @@ export class HomePage extends Component {
         return {
           headerTitle: <Text>Home</Text>,
           headerRight: (
-            <Button transparent>
-              <Icon name='add' />
+            <Button transparent onPress={() => {
+                console.log('ok')
+                navigation.navigate('CreateNote')
+            }}>
+              <Icon name='add'/>
             </Button>
           ),
         };
