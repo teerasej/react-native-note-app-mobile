@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input } from 'native-base';
+import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input, Label } from 'native-base';
 import { Field,reduxForm } from 'redux-form';
 
 export class NewNotePage extends Component {
@@ -32,7 +32,10 @@ export class NewNotePage extends Component {
                     </Body>
                 </Header>
                 <Content padder>
+                    <Item inlineLabel >
+                        <Label>Message: </Label>
                     <Field name="message" component={this.renderInput} />
+                    </Item>
                     <Button block primary >
                         <Text>Save</Text>
                     </Button>
