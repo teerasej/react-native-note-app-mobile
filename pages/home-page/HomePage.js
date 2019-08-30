@@ -9,6 +9,10 @@ export class HomePage extends Component {
         notes: PropTypes.array
     }
 
+    static navigationOptions = {
+        title: 'Home'
+    };
+
     static defaultProps = {
         notes: [
             { title: 'a' },

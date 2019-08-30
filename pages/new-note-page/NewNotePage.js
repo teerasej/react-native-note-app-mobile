@@ -10,6 +10,10 @@ export class NewNotePage extends Component {
        
     }
 
+    static navigationOptions = {
+        title: 'New Note'
+    };
+
     renderInput({ input, label, type, meta: { touched, error, warning } }){
         var hasError= false;
         if(error !== undefined){
