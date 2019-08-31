@@ -31,5 +31,9 @@
     "enzyme-react-16-adapter-setup": "^0.1.0",
     "jest-enzyme": "^7.1.0"
   },
-  "private": true
+  "private": true,
+  "jest" : {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "setupFiles": ["enzyme-react-16-adapter-setup"]
+  }
 }
