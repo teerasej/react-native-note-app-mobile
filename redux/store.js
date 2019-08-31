@@ -13,7 +13,7 @@ export default function configureStore() {
         createRootReducer(),
         compose(
             applyMiddleware(
-                logger,
+                // logger,
                 sagaMiddleware
             ),
         ),
