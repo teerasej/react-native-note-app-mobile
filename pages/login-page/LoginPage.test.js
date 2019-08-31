@@ -26,11 +26,7 @@ describe('Name of the group', () => {
         expect(component).toMatchSnapshot()
     });
 
-    test('has LoginForm', () => {
-        const component = shallow(<LoginPage />)
-        const instance = component.instance();
-        expect(instance.find('LoginForm')).toHaveLength(1);
-    });
+   
 
 
 });
