@@ -2,10 +2,9 @@
 import { takeEvery, put, call } from "redux-saga/effects";
 import actions from "../actions";
 import { NavigationActions } from "../NavigationActionClass";
-
+import "isomorphic-fetch";
 
 function* signInWatch() {
-    console.log('catching')
     yield takeEvery(actions.ActionTypes.SIGN_IN_START, doSignIn)
 }
 
