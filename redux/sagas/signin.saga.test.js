@@ -1,5 +1,5 @@
 import { testSaga } from 'redux-saga-test-plan';
-import watcher, { doSignIn }  from "./signin.saga";
+import watcher, { doSignIn, doCheckToken }  from "./signin.saga";
 import actions from '../actions';
 import "isomorphic-fetch";
 import { NavigationActions } from '../NavigationActionClass';
@@ -9,8 +9,11 @@ describe('Sign In Saga', () => {
     it('watch SignIn Saga', () => {
         testSaga(watcher, { username: 'a', password: 'pass' })
         .next()
+        .takeEvery(actions.ActionTypes.SIGN_IN_VALIDATE, doCheckToken)
+        .next()
         .takeEvery(actions.ActionTypes.SIGN_IN_START, doSignIn)
         .next()
+        .takeEvery(actions.ActionTypes.SIGN_IN_SUCCESS, doSaveToken)
         .isDone();
     });
 
@@ -20,7 +23,7 @@ describe('Sign In Saga', () => {
 
         const payload = {
             type: actions.ActionTypes.SIGN_IN_START,
-            payload: authInfo
+            action: authInfo
         }
 
         const mockResponse = { 
@@ -28,7 +31,7 @@ describe('Sign In Saga', () => {
             json: () => {token:'a'}
         }
 
-        testSaga(doSignIn, payload)
+        testSaga(doSignIn, action)
         .next()
         .call(fetch, 'http://localhost:3002/api/auth/signin', {
             method: 'POST',
@@ -52,7 +55,7 @@ describe('Sign In Saga', () => {
 
         const authInfo = { username: 'a', password: 'pass' }
 
-        const payload = {
+        const action = {
             type: actions.ActionTypes.SIGN_IN_START,
             payload: authInfo
         }
@@ -64,7 +67,7 @@ describe('Sign In Saga', () => {
 
         const mockError = new Error('Url not found');
 
-        testSaga(doSignIn, payload)
+        testSaga(doSignIn, action)
         .next()
         .call(fetch, 'http://localhost:3002/api/auth/signin', {
             method: 'POST',
@@ -76,6 +79,67 @@ describe('Sign In Saga', () => {
         })
         .throw(mockError)
         .put({ type: actions.ActionTypes.SIGN_IN_FAILED, payload: mockError})
+        .next()
+        .isDone();
+    });
+
+    it('Bypass SignIn Operation if token is exist in storage', () => {
+
+        const authInfo = { username: 'a', password: 'pass' }
+
+        const action = {
+            type: actions.ActionTypes.SIGN_IN_START,
+            payload: authInfo
+        }
+
+        const mockTokenValue = 'a';
+        const mockTokenAsPayload = { token: mockTokenValue}
+
+        testSaga(doCheckToken, action)
+        .next()
+        .call(AsyncStorage.getItem,'token')
+        .next(mockTokenValue)
+        .call(NavigationActions.navigate, 'Home')
+        .next()
+        .put({type: actions.ActionTypes.SIGN_IN_SUCCESS, payload: mockTokenAsPayload})
+        .next()
+        .isDone();
+    });
+
+    it('Start SignIn Operation if token does not exist in storage', () => {
+
+        const authInfo = { username: 'a', password: 'pass' }
+
+        const action = {
+            type: actions.ActionTypes.SIGN_IN_START,
+            payload: authInfo
+        }
+
+        const mockTokenValue = undefined;
+
+        testSaga(doCheckToken, action)
+        .next()
+        .call(AsyncStorage.getItem,'token')
+        .next(mockTokenValue)
+        .next()
+        .put({type: actions.ActionTypes.SIGN_IN_START, payload: authInfo})
+        .next()
+        .isDone();
+    });
+
+    it('Save token to storage if got from sign in', () => {
+
+        const mockTokenValue = 'a';
+        const mockTokenAsPayload = { token: mockTokenValue };
+
+        const action = {
+            type: actions.ActionTypes.SIGN_IN_SUCCESS,
+            payload: mockTokenAsPayload
+        }
+ 
+        testSaga(doSaveToken, action)
+        .next()
+        .call(AsyncStorage.setItem,'token', mockTokenValue)
         .next()
         .isDone();
     });
