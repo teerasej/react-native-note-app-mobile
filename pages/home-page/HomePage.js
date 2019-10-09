@@ -5,6 +5,9 @@ import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, B
 
 export class HomePage extends Component {
 
+    static navigationOptions = {
+        title: 'Home'
+    };
 
     notes = [
         { title: 'a' },

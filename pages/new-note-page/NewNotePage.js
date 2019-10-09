@@ -7,6 +7,9 @@ import NewNoteForm from './NewNoteForm';
 
 export class NewNotePage extends Component {
   
+  static navigationOptions = {
+    title: 'New Note'
+  };
 
   onFormSave = (values) => {
     console.log(values);
