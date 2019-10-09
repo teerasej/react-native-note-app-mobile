@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Icon } from 'native-base';
 
+
 export class HomePage extends Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -42,5 +43,14 @@ export class HomePage extends Component {
     }
 }
 
+// snippet: reduxmap
+const mapStateToProps = (state) => ({
+    
+})
 
-export default HomePage
+const mapDispatchToProps = {
+    
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

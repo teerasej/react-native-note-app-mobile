@@ -27,4 +27,13 @@ export class NewNotePage extends Component {
   }
 }
 
-export default NewNotePage
+const mapStateToProps = (state) => ({
+  
+})
+
+const mapDispatchToProps = {
+  
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewNotePage)
