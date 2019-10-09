@@ -11,5 +11,6 @@ const createNewNote = (message) => {
 }
 
 export default {
-    Types
+    Types,
+    createNewNote
 }

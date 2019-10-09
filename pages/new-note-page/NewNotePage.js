@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input, Label } from 'native-base';
-
+import actions from "./../../redux/actions";
 import NewNoteForm from './NewNoteForm';
 
 export class NewNotePage extends Component {
@@ -13,7 +13,7 @@ export class NewNotePage extends Component {
 
   onFormSave = (values) => {
     console.log(values);
-      
+    this.props.createNewNote(values.message);
     this.props.navigation.goBack();
   }
 
@@ -31,8 +31,10 @@ const mapStateToProps = (state) => ({
   
 })
 
-const mapDispatchToProps = {
-  
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createNewNote: (message) => dispatch(actions.createNewNote(message))
+  }
 }
 
 
