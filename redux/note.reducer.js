@@ -1,3 +1,5 @@
+import actions from "../redux/actions";
+
 const initialState = {
     notes: [
         { title: 'a' },
@@ -9,8 +11,8 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
     switch (type) {
 
-    case '':
-        return { ...state, ...payload }
+    case actions.Types.SAVE_NEW_NOTE:
+        return { ...state, notes: [...state.notes, { title: payload }] }
 
     default:
         return state
