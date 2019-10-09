@@ -9,6 +9,11 @@ import NewNotePage from './pages/new-note-page/NewNotePage';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
+import configureStore from "./redux/store";
+import { Provider } from "react-redux";
+
+const store = configureStore();
+
 const AppNavigator = createStackNavigator({
   Home: { screen: HomePage },
   CreateNote: { screen: NewNotePage }
@@ -40,7 +45,9 @@ export default class App extends React.Component {
     }
 
     return (
-      <AppContainer/>
+      <Provider store={store}>
+        <AppContainer/>
+      </Provider>
     );
   }
 }
