@@ -6,6 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
 import NewNotePage from './pages/new-note-page/NewNotePage';
 
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+
+
+
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
