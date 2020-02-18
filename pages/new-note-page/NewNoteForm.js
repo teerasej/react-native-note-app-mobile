@@ -5,17 +5,9 @@ import { Field, reduxForm } from 'redux-form';
 
 export class NewNoteForm extends Component {
 
-    renderInput({ input, label, type, meta: { touched, error, warning } }) {
-        var hasError = false;
-        if (error !== undefined && touched) {
-            hasError = true;
-            Alert.alert(
-                'Opps',
-                error
-            );
-        }
+    renderInput({ input }) {
         return (
-                <Item error={hasError}>
+                <Item>
                     <Input {...input} />
                 </Item>
         )
@@ -41,24 +33,24 @@ export class NewNoteForm extends Component {
     }
 }
 
-const validate = values => {
+// const validate = values => {
 
-    const error = {};
-    error.message = '';
+//     const error = {};
+//     error.message = '';
 
-    var newMessage = values.message;
+//     var newMessage = values.message;
 
-    if (values.message === undefined) {
-        newMessage = ''
-    }
+//     if (values.message === undefined) {
+//         newMessage = ''
+//     }
 
-    if (newMessage === '') {
-        error.message = 'fill something';
-    } 
+//     if (newMessage === '') {
+//         error.message = 'fill something';
+//     } 
 
-    return error;
-};
+//     return error;
+// };
 
-NewNoteForm = reduxForm({ form: 'test', validate })(NewNoteForm)
+NewNoteForm = reduxForm({ form: 'test' })(NewNoteForm)
 
 export default NewNoteForm
