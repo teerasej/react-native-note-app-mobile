@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  createNewNote: (message) => dispatch(createNewNote(message))
+  createNewNote: (message) => createNewNote(message,dispatch)
 })
 
 
