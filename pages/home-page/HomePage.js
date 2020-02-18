@@ -3,38 +3,23 @@ import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Icon } from 'native-base';
 
+
 export class HomePage extends Component {
-
-    static navigationOptions = ({ navigation }) => {
-        return {
-            title: 'Home',
-            headerRight: (
-                <Button transparent
-                    onPress={() => navigation.navigate('CreateNote')}
-                >
-                    <Icon name='add' />
-                </Button>
-            )
-        }
-    };
-
-    notes = [
-        { title: 'a' },
-        { title: 'b' },
-        { title: 'c' }
-    ]
 
     render() {
         return (
 
             <Content>
                 <List>
-                    <ListItem>
-                        <Text>A</Text>
-                    </ListItem>
-                    <ListItem>
-                        <Text>B</Text>
-                    </ListItem>
+                    {
+                        this.props.notes.map((item, index) => {
+                            return (
+                                <ListItem key={index}>
+                                    <Text>{item.title}</Text>
+                                </ListItem>
+                            )
+                        })
+                    }
                 </List>
             </Content>
 
@@ -42,5 +27,14 @@ export class HomePage extends Component {
     }
 }
 
+// snippet: reduxmap
+const mapStateToProps = (state) => ({
+    notes: state.note.notes
+})
 
-export default HomePage
+const mapDispatchToProps = {
+
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
