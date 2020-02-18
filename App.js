@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import { AppLoading } from 'expo';
-import { Container, Text } from 'native-base';
+import { Container, Text, Button, Icon } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
@@ -38,7 +38,25 @@ export default class App extends React.Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomePage} />
+          <Stack.Screen name="Home" component={HomePage}
+            options={(props) => {
+              return {
+                headerTitle: <Text>Home</Text>,
+                headerRight: () => (
+                  <Button transparent
+                    onPress={() => props.navigation.navigate('CreateNote')}
+                  >
+                    <Icon name='add' />
+                  </Button>
+                ),
+              }
+            }}
+          />
+          <Stack.Screen name="CreateNote" component={NewNotePage} 
+            options={{
+              title: 'New Note'
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
