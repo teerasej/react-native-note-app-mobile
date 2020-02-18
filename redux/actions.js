@@ -22,7 +22,8 @@ const updateStorage = async (message) => {
         console.log('updating storage...');
 
         let messageArray;
-        const messageArrayString = await AsyncStorage.getItem('@messageArray');
+        const messageArrayString = await AsyncStorage.getItem('@storage:messageArray');
+        console.log('Stored Array:', messageArrayString);
 
         if (messageArrayString !== null) {
             messageArray: Array = JSON.parse(messageArrayString);
@@ -30,10 +31,14 @@ const updateStorage = async (message) => {
             messageArray = [];
         }
 
+
+
         messageArray.push(message);
-        
+
         let updatedMessageArrayString = JSON.stringify(messageArray);
-        await AsyncStorage.setItem('@messageArray', updatedMessageArrayString);
+        console.log('Updated Array:', updatedMessageArrayString);
+
+        await AsyncStorage.setItem('@storage:messageArray', updatedMessageArrayString);
 
         console.log('updated complete');
 
