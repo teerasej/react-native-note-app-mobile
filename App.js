@@ -6,12 +6,13 @@ import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
 import NewNotePage from './pages/new-note-page/NewNotePage';
-
+import { Provider } from 'react-redux';
+import createStore from "./redux/store";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-
+const store = createStore();
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class App extends React.Component {
     }
 
     return (
+      <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomePage}
@@ -59,6 +61,7 @@ export default class App extends React.Component {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
     );
   }
 }
