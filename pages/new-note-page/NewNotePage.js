@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input, Label } from 'native-base';
 
 import NewNoteForm from './NewNoteForm';
+import { Types, createNewNote } from "../../redux/actions";
 
 export class NewNotePage extends Component {
   
@@ -13,7 +14,7 @@ export class NewNotePage extends Component {
 
   onFormSave = (values) => {
     console.log(values);
-      
+    this.props.createNewNote(values.message);
     this.props.navigation.goBack();
   }
 
@@ -27,4 +28,13 @@ export class NewNotePage extends Component {
   }
 }
 
-export default NewNotePage
+const mapStateToProps = (state) => ({
+  
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  createNewNote: (message) => dispatch(createNewNote(message))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewNotePage)
