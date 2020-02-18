@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import { AppLoading } from 'expo';
 import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
@@ -6,15 +7,10 @@ import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
 import NewNotePage from './pages/new-note-page/NewNotePage';
 
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const AppNavigator = createStackNavigator({
-  Home: { screen: HomePage },
-  CreateNote: { screen: NewNotePage }
-})
-
-const AppContainer = createAppContainer(AppNavigator);
+const Stack = createStackNavigator();
 
 
 export default class App extends React.Component {
@@ -40,7 +36,11 @@ export default class App extends React.Component {
     }
 
     return (
-      <AppContainer/>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomePage} />
+        </Stack.Navigator>
+      </NavigationContainer>
     );
   }
 }
