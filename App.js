@@ -32,21 +32,23 @@ export default function App() {
       {/* กำหนด Stack */}
       <Stack.Navigator>
         {/* กำหนดหน้าแอพแรก ชื่อว่า Home และเลือก component HomePage เป็นตัว User Interface */}
-        <Stack.Screen
-          name="Home"
-          component={HomePage}
-          options={{
-            headerTitle: <Text>Home</Text>,
-            headerRight: () => (
-              <Button transparent>
-                <Icon name='add' />
-              </Button>
-            ),
-          }}
-        />
-        <Stack.Screen name="CreateNote" component={NewNotePage}
-          options={{ title: 'New Note' }}
-        />
+        <Stack.Screen name="Home" component={HomePage}
+      options={(props) => {
+        return {
+          headerTitle: <Text>Home</Text>,
+          headerRight: () => (
+            <Button transparent
+              onPress={() => props.navigation.navigate('CreateNote')}
+            >
+              <Icon name='add' />
+            </Button>
+          ),
+        }
+      }}
+    />
+  <Stack.Screen name="CreateNote" component={NewNotePage} 
+    options={{ title: 'New Note' }}
+    />
       </Stack.Navigator>
     </NavigationContainer>
   );
