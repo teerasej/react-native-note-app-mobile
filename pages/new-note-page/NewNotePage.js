@@ -1,22 +1,42 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, TextInput } from 'react-native'
 import { connect } from 'react-redux'
-import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Item, Input, Label } from 'native-base';
+import {  Content, Text, Button, Item, Input, Label } from 'native-base';
+import { Formik } from 'formik';
 
-import NewNoteForm from './NewNoteForm';
 
 export class NewNotePage extends Component {
-  
-
-  onFormSave = (values) => {
-    console.log(values);
-  }
 
 
   render() {
     return (
       <Content padder>
-        <NewNoteForm onSubmit={this.onFormSave}/>
+        <View>
+          <Formik
+            initialValues={{ message: '' }}
+            onSubmit={
+              values => {
+                console.log(values)
+              }
+            }
+          >
+            {({ handleChange, handleBlur, handleSubmit, values }) => (
+              <View>
+                <Item inlineLabel >
+                  <Label>Message: </Label>
+                  <TextInput
+                    onChangeText={handleChange('message')}
+                    onBlur={handleBlur('message')}
+                    value={values.message}
+                  />
+                </Item>
+                <Button block primary onPress={handleSubmit} >
+                  <Text>Save</Text>
+                </Button>
+              </View>
+            )}
+          </Formik>
+        </View>
       </Content>
     )
   }
