@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import 'react-native-gesture-handler';
+//import 'react-native-gesture-handler';
 import AppLoading from 'expo-app-loading';
 import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
@@ -8,7 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
 import NewNotePage from './pages/new-note-page/NewNotePage';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -39,6 +42,12 @@ export default function App() {
   }
 
   return (
-    <HomePage />
+    <NavigationContainer>
+      {/* กำหนด Stack */}
+      <Stack.Navigator>
+        {/* กำหนดหน้าแอพแรก ชื่อว่า Home และเลือก component HomePage เป็นตัว User Interface */}
+        <Stack.Screen name="Home" component={HomePage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
