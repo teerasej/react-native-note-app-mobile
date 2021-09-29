@@ -21,7 +21,7 @@ export default function NewNotePage() {
             <View>
               <Item inlineLabel >
                 <Label>Message: </Label>
-                <TextInput
+                <Input
                   onChangeText={handleChange('message')}
                   onBlur={handleBlur('message')}
                   value={values.message}
