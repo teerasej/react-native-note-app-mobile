@@ -5,8 +5,6 @@ import {  Content, Text, Button, Item, Input, Label } from 'native-base';
 import { Formik } from 'formik';
 
 
-import React from 'react'
-
 export default function NewNotePage() {
   return (
     <Content padder>
