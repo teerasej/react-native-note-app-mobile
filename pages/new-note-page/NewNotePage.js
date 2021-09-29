@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { View, TextInput } from 'react-native'
-import { connect } from 'react-redux'
 import {  Content, Text, Button, Item, Input, Label } from 'native-base';
 import { Formik } from 'formik';
+import { actionTypes, createNewNote } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 
-export default function NewNotePage() {
+export default function NewNotePage(props) {
+
+  const dispatch = useDispatch()
+
   return (
     <Content padder>
       <View>
@@ -14,6 +18,12 @@ export default function NewNotePage() {
           onSubmit={
             values => {
               console.log(values)
+              dispatch(createNewNote(values.message));
+              // dispatch({
+              //   type: actionTypes.SAVE_NEW_NOTE,
+              //   payload: values.message
+              // })
+              props.navigation.goBack()
             }
           }
         >
