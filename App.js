@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 //import 'react-native-gesture-handler';
 import AppLoading from 'expo-app-loading';
-import { Container, Text } from 'native-base';
+import { Container, Text,Button, Icon } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import HomePage from './pages/home-page/HomePage';
@@ -46,7 +46,21 @@ export default function App() {
       {/* กำหนด Stack */}
       <Stack.Navigator>
         {/* กำหนดหน้าแอพแรก ชื่อว่า Home และเลือก component HomePage เป็นตัว User Interface */}
-        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen
+          name="Home"
+          component={HomePage}
+          options={{
+            headerTitle: <Text>Home</Text>,
+            headerRight: () => (
+              <Button transparent>
+                <Icon name='add' />
+              </Button>
+            ),
+          }}
+        />
+        <Stack.Screen name="CreateNote" component={NewNotePage}
+          options={{ title: 'New Note' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
