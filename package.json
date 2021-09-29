@@ -28,7 +28,8 @@
     "redux-logger": "^3.0.6"
   },
   "devDependencies": {
-    "babel-preset-expo": "^6.0.0"
+    "@babel/core": "^7.0.0",
+    "babel-preset-expo": "~8.0.0"
   },
   "private": true
 }
