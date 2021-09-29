@@ -1,16 +1,12 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Container, Header, Title, Content, List, ListItem, Text, Left, Right, Body, Button, Icon } from 'native-base';
 
 
 export default function HomePage() {
 
-    let notes = [
-        { title: 'a' },
-        { title: 'b' },
-        { title: 'c' }
-    ]
+    const notes = useSelector(state => state.notes)
 
     return (
         <Content>
@@ -21,6 +17,15 @@ export default function HomePage() {
                 <ListItem>
                     <Text>B</Text>
                 </ListItem>
+                {
+                    notes.map((item, index) => {
+                        return (
+                            <ListItem key={index}>
+                                <Text>{item.title}</Text>
+                            </ListItem>
+                        )
+                    })
+                }
             </List>
         </Content>
     )
